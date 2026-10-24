@@ -2,16 +2,13 @@ trigger:
 - main
 
 pool:
-  vmImage: 'ubuntu-24.04'
+  vmImage: 'ubuntu-22.04'
 
 steps:
 - task: Maven@4
   inputs:
-    mavenPomFile: 'pom.xml'
-    mavenOptions: '-Xmx3072m'
+    mavenPomFile: '**/pom.xml'
+    goals: 'package'
     javaVersionOption: '11'
     jdkVersionOption: '1.11'
-    jdkArchitectureOption: 'x64'
     publishJUnitResults: true
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    goals: 'package'
